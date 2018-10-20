@@ -1,6 +1,6 @@
-# bassdrive_streamer
+# Bassdrive Archive Player
 
-[Bassdrive archive](http://archives.bassdrivearchive.com/) browser and player.
+[Bassdrive Archive](http://archives.bassdrivearchive.com/) browser and player.
 
 ## Screenshots
 

@@ -21,8 +21,6 @@ class Player extends StatelessWidget {
       onSkipPrevious: () {},
       onSkipNext: () {},
       onCompleted: () {},
-      onLoopChanged: (loop) {},
-      onShuffleChanged: (loop) {},
       textColor: Colors.white,
       url: url,
       title: Text(

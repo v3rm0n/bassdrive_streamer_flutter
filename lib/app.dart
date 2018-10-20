@@ -6,11 +6,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Bassdrive Streamer',
+      title: 'The Bassdrive Archives',
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new Home(title: 'Bassdrive Streamer'),
+      home: new Home(title: 'The Bassdrive Archives'),
     );
   }
 }

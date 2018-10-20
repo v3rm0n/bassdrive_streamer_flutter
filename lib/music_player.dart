@@ -2,23 +2,6 @@ import 'package:audioplayers/audioplayer.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-/// The kind of looping a [MusicPlayer] is doing.
-enum MusicPlayerLoopKind {
-  /// Plays the entire album/playlist again once it finishes.
-  ///
-  /// [MusicPlayer] has no logic to handle this case.
-  loopAll,
-
-  /// Repeats the current when it finishes.
-  ///
-  /// [MusicPlayer] has no logic to handle this case.
-  loopOne,
-}
-
-/// A Flutter widget that plays an audio file, as well as displaying
-/// a interactive HUD.
-///
-/// Supports seeking, shuffling, skipping, and more.
 class MusicPlayer extends StatefulWidget {
   /// The URL of the audio file to play.
   final String url;
@@ -29,16 +12,8 @@ class MusicPlayer extends StatefulWidget {
   /// Passed to [AudioPlayer].
   final bool isLocal;
 
-  /// Toggles the `shuffle` state of the player.
-  ///
-  /// This is purely visual; shuffling logic should be handled by your app.
-  final bool shuffle;
-
   /// The color to paint the icons, text, and slider with.
   final Color textColor;
-
-  /// Whether the player is looping, and if so, which type of loop.
-  final MusicPlayerLoopKind loop;
 
   /// The volume to play the file at.
   final double volume;
@@ -48,12 +23,6 @@ class MusicPlayer extends StatefulWidget {
 
   /// Playback event handlers.
   final Function() onCompleted, onSkipPrevious, onSkipNext;
-
-  /// Called when [loop] changes.
-  final Function(MusicPlayerLoopKind) onLoopChanged;
-
-  /// Called when [shuffle] changes.
-  final Function(bool) onShuffleChanged;
 
   /// The minimum amount of time allowed to pass before pressing the `skip_previous` button will
   /// restart the current song, rather than skipping back to a previous one.
@@ -68,17 +37,13 @@ class MusicPlayer extends StatefulWidget {
       @required this.onCompleted,
       @required this.onSkipPrevious,
       @required this.onSkipNext,
-      @required this.onLoopChanged,
-      @required this.onShuffleChanged,
       @required this.url,
       @required this.title,
       this.minRestartDuration: const Duration(seconds: 3),
       this.textColor,
       this.isLocal: false,
       this.volume: 1.0,
-      this.key,
-      this.shuffle: false,
-      this.loop});
+      this.key});
 
   @override
   State<StatefulWidget> createState() {

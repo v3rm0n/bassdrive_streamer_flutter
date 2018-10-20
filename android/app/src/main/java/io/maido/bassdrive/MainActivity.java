@@ -1,4 +1,4 @@
-package com.example.bassdrivestreamer;
+package io.maido.bassdrive;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
