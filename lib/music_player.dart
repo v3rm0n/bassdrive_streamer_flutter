@@ -1,4 +1,4 @@
-import 'package:audioplayers/audioplayer.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
@@ -67,9 +67,9 @@ class MusicPlayerState extends State<MusicPlayer> {
         isLocal: widget.isLocal,
         volume: widget.volume,
       )
-      ..setCompletionHandler(widget.onCompleted)
-      ..setErrorHandler(widget.onError)
-      ..setDurationHandler((duration) {
+      ..completionHandler = widget.onCompleted
+      ..errorHandler = widget.onError
+      ..durationHandler = (duration) {
         setState(() {
           this.duration = duration;
 
@@ -77,8 +77,8 @@ class MusicPlayerState extends State<MusicPlayer> {
             this.value = (position.inSeconds / duration.inSeconds);
           }
         });
-      })
-      ..setPositionHandler((position) {
+      }
+      ..positionHandler = (position) {
         setState(() {
           this.position = position;
 
@@ -86,7 +86,7 @@ class MusicPlayerState extends State<MusicPlayer> {
             this.value = (position.inSeconds / duration.inSeconds);
           }
         });
-      });
+      };
   }
 
   @override
@@ -164,7 +164,7 @@ class MusicPlayerState extends State<MusicPlayer> {
                 if (position == null || position < widget.minRestartDuration)
                   widget.onSkipPrevious();
                 else
-                  audioPlayer.seek(0.0);
+                  audioPlayer.seek(Duration());
               },
               icon: new Icon(
                 Icons.skip_previous,
@@ -208,7 +208,7 @@ class MusicPlayerState extends State<MusicPlayer> {
         onChanged: (value) {
           if (duration != null) {
             var seconds = duration.inSeconds * value;
-            audioPlayer.seek(seconds);
+            audioPlayer.seek(Duration(seconds: seconds.toInt()));
           }
         },
         value: value ?? 0.0,

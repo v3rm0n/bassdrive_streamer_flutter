@@ -2,7 +2,7 @@ import 'package:bassdrive_streamer/day.dart';
 import 'package:bassdrive_streamer/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart' show parse;
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 class Home extends StatelessWidget {
   final String title;
@@ -16,8 +16,8 @@ class Home extends StatelessWidget {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             final base = 'https://archives.bassdrivearchive.com/$nr%20-%20$day';
             debugPrint('Showing day: $base');
-            return FutureBuilder<http.Response>(
-              future: http.get(base),
+            return FutureBuilder<Response>(
+              future: get(base),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   return Loader(name: day);
